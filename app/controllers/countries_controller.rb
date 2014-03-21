@@ -16,7 +16,7 @@ class CountriesController < ApplicationController
   end
 
   def create
-    @country = Country.new(country_params)
+    @country = Country.find_or_create_by(country_params)
     hdi_value = Country.find_hdi_value_2012(@country.name)
     @country.hdi = Hdi.new(:hdi_value_2012 => hdi_value)
 
@@ -27,7 +27,7 @@ class CountriesController < ApplicationController
     end
   end
 
-private
+  private
   def country_params
     params.require(:country).permit(:name)
   end

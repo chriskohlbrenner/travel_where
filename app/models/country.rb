@@ -1,6 +1,11 @@
+# Need to mess with this or the controller:
+#   If statements or rescue based on bad searches
+#   Suggest correct term if misspelled
+#   How to search for countries with multiple names (united states)
+
 class Country < ActiveRecord::Base
-  before_save :capitalize_name #why doesn't this work?
-  has_one :hdi
+  before_save :capitalize_name!
+  has_one :hdi, dependent: :destroy
 
   def self.find_hdi_value_2012(country_name)
     uri = URI.parse("http://data.undp.org/resource/wxub-qc5k.json?name=#{country_name}")
@@ -24,7 +29,7 @@ class Country < ActiveRecord::Base
   end
 
 
-  def capitalize_name
-    self.name.capitalize
+  def capitalize_name!
+    self.name.capitalize!
   end
 end
