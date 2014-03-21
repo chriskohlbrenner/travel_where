@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 20140321151811) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
-    t.integer  "hdi_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "hdis", force: true do |t|
     t.float    "hdi_value_2012"
+    t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
