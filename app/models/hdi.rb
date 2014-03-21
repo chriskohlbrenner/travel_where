@@ -1,5 +1,5 @@
 class Hdi < ActiveRecord::Base
-  has_one :country
+  belongs_to :country
 
 
 end

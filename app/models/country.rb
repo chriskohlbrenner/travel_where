@@ -1,6 +1,7 @@
 class Country < ActiveRecord::Base
-  belongs_to :hdi
+  has_one :hdi
 
-  # def 
+
+
 
 end
