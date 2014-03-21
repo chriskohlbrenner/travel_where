@@ -16,7 +16,6 @@ class Country < ActiveRecord::Base
   end
 
   def ok_to_visit?
-
     0.7 > self.hdi.hdi_value_2012 && self.hdi.hdi_value_2012 >= 0.5
   end
 

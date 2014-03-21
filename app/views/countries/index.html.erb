@@ -3,7 +3,7 @@
 <% if @country.great_to_visit? %>
 Great choice! All seems well in <%=  @country.name %>. In fact, it has a human development index of <%= @country.hdi.hdi_value_2012 %>.
 <% elsif @country.ok_to_visit? %>
-Hmm, you might want to think twice about going there. <%= @country.name %> isn't doing so well, as you can tell by its human development index of <%= @country.hdi.hdi_value_2012 %>
+Hmm, you might want to think twice about going there. <%= @country.name %> isn't doing so well, as you can tell by its human development index of <%= @country.hdi.hdi_value_2012 %>.
 <% else %>
 Yikes, are you sure about that? <%= @country.name %> has a human development index of <%= @country.hdi.hdi_value_2012 %>, maybe not the kind of place you want to be going...
 <% end %>
