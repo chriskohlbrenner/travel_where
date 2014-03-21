@@ -1,0 +1,10 @@
+<h3>Where are you considering traveling?</h3>
+
+<%= form_for(@country) do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  
+  <%= f.submit %>
+<% end %>
