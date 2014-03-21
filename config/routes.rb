@@ -1,5 +1,6 @@
 VisitWhere::Application.routes.draw do
-  
+
+  get '/' => 'countries#welcome'
   get '/countries' => 'countries#index'
   get '/countries/new' => 'countries#new'
   post '/countries' => 'countries#create'

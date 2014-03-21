@@ -1,5 +1,8 @@
 class CountriesController < ApplicationController
 
+  def welcome
+  end
+
   def index
     @country = Country.all.last
   end
