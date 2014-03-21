@@ -1,14 +1,9 @@
-<!-- Not a bad idea .... good hdi -->
-<!-- Might want to think twice about that -- bad hdi -->
-<div>
-<% if @country.great_to_visit? %>
-Great choice! All seems well in <%=  @country.name %>. In fact, it has a human development index of <%= @country.hdi.hdi_value_2012 %>.
-<% elsif @country.ok_to_visit? %>
-Hmm, you might want to think twice about going there. <%= @country.name %> isn't doing so well, as you can tell by its human development index of <%= @country.hdi.hdi_value_2012 %>.
-<% else %>
-Yikes, are you sure about that? <%= @country.name %> has a human development index of <%= @country.hdi.hdi_value_2012 %>, maybe not the kind of place you want to be going...
+<ul>
+<% @countries.each do |country| %>
+  <li>
+    <%= country.name %>
+    <%= country.hdi.hdi_value_2012 if country.hdi %>
+  </li>
 <% end %>
-</div>
-
-
-<p><%= link_to "Try another country", "/countries/new" %><p>
+</ul>
+<p><%= link_to "Try another country", "/countries/new", class: 'button' %><p>

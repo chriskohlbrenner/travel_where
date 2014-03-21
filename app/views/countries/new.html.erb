@@ -1,4 +1,6 @@
-<h3>Where are you considering traveling?</h3>
+<div>
+  <h3>Where are you considering traveling?</h3>
+</div>
 
 <%= form_for(@country) do |f| %>
   <p>
@@ -6,5 +8,5 @@
     <%= f.text_field :name %>
   </p>
   
-  <%= f.submit class: 'button' %>
+  <%= f.submit 'Search Country', class: 'button' %>
 <% end %>

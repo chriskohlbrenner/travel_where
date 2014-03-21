@@ -1,5 +1,5 @@
 class Country < ActiveRecord::Base
-  before_create :capitalize_name
+  before_save :capitalize_name #why doesn't this work?
   has_one :hdi
 
   def self.find_hdi_value_2012(country_name)
@@ -23,8 +23,8 @@ class Country < ActiveRecord::Base
     0.5 > self.hdi.hdi_value_2012
   end
 
-  private
+
   def capitalize_name
-    name.capitalize
+    self.name.capitalize
   end
 end
