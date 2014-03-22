@@ -1,9 +1,16 @@
-<ul>
-<% @countries.each do |country| %>
-  <li>
-    <%= country.name %>
-    <%= country.hdi.hdi_value_2012 if country.hdi %>
-  </li>
+<% if @countries.all.count != 0 %>
+  <ul>
+  <% @countries.each do |country| %>
+    <li>
+      <%= country.name %>
+      <%= country.hdi.hdi_value_2012 if country.hdi %>
+    </li>
+  <% end %>
+  </ul>
+<% elsif @countries %>
+  <p>
+    You haven't searched any countries yet. Please click below to create a new search.
+  </p>
 <% end %>
-</ul>
+
 <p><%= link_to "Search a new country", "/countries/new", class: 'button' %><p>
