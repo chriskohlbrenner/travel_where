@@ -18,7 +18,7 @@ class CountriesController < ApplicationController
   def create
     @country = Country.find_or_create_by(country_params)
     hdi_value = @country.find_hdi_value_2012
-    # rescue RuntimeError
+    # rescue RuntimeError [for spelling]
     #   render :new
     @country.hdi = Hdi.new(:hdi_value_2012 => hdi_value)
     if @country.save

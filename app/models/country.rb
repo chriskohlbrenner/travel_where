@@ -5,7 +5,7 @@
 
 class Country < ActiveRecord::Base
   # before_create :check_spelling
-  before_save :titleize_name!
+  before_create :titleize_name!
   has_one :hdi, dependent: :destroy
 
   def fix_name_for_search
@@ -22,6 +22,7 @@ class Country < ActiveRecord::Base
     search.gsub!(/(tanzania)/i,"Tanzania (United Republic of)")
     search.gsub!(/(congo)/i,"Congo (Democratic Republic of the)")
     search.gsub(" ", "%20").gsub("'", "%27").gsub("(", "%28").gsub(")", "%29")
+
   end
 
   def find_hdi_value_2012
