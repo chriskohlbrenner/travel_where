@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140321151811) do
   end
 
   create_table "hdis", force: true do |t|
-    t.float    "hdi_value_2012"
+    t.string   "hdi_value_2012"
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"

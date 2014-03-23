@@ -34,22 +34,22 @@ class Country < ActiveRecord::Base
     response = http.request(request)
     hash_data = JSON.parse(response.body)
     if hash_data.first
-      hash_data.first["_2012_hdi_value"] 
+      hash_data.first["_2012_hdi_value"]
     else
       false
     end
   end
 
   def great_to_visit?
-    self.hdi.hdi_value_2012 >= 0.700
+    self.hdi.hdi_value_2012.to_f >= 0.700
   end
 
   def ok_to_visit?
-    0.700 > self.hdi.hdi_value_2012 && self.hdi.hdi_value_2012 >= 0.500
+    0.700 > self.hdi.hdi_value_2012.to_f && self.hdi.hdi_value_2012.to_f >= 0.500
   end
 
   def bad_to_visit?
-    0.500 > self.hdi.hdi_value_2012
+    0.500 > self.hdi.hdi_value_2012.to_f
   end
 
   private

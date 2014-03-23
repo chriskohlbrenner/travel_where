@@ -20,6 +20,7 @@ class CountriesController < ApplicationController
     @country = Country.find_or_create_by(:name => name)
     if @country.find_hdi_value_2012
       @hdi_value = @country.find_hdi_value_2012
+      binding.pry
       @country.hdi = Hdi.new(:hdi_value_2012 => @hdi_value)
       if @country.save
         redirect_to countries_show_path(@country)
