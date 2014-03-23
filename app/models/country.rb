@@ -41,15 +41,15 @@ class Country < ActiveRecord::Base
   end
 
   def great_to_visit?
-    self.hdi.hdi_value_2012 >= 0.7
+    self.hdi.hdi_value_2012 >= 0.700
   end
 
   def ok_to_visit?
-    0.7 > self.hdi.hdi_value_2012 && self.hdi.hdi_value_2012 >= 0.5
+    0.700 > self.hdi.hdi_value_2012 && self.hdi.hdi_value_2012 >= 0.500
   end
 
   def bad_to_visit?
-    0.5 > self.hdi.hdi_value_2012
+    0.500 > self.hdi.hdi_value_2012
   end
 
   private

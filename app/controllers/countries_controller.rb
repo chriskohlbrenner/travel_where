@@ -16,7 +16,8 @@ class CountriesController < ApplicationController
   end
 
   def create
-    @country = Country.new(country_params)
+    name = country_params["name"].titleize
+    @country = Country.find_or_create_by(:name => name)
     if @country.find_hdi_value_2012
       @hdi_value = @country.find_hdi_value_2012
       @country.hdi = Hdi.new(:hdi_value_2012 => @hdi_value)
