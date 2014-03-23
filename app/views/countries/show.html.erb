@@ -2,13 +2,13 @@
 <div>
 
 <% if @country.great_to_visit? %>
-  <p>Great choice! All seems well in <%=  @country.name %>, with a Human Development Index of <%= @country.hdi.hdi_value_2012 %>.
+  <p>All seems well in <%=  @country.name %>, with a Human Development Index of <%= @country.hdi.hdi_value_2012 %>.
   </p>
 <% elsif @country.ok_to_visit? %>
-  <p>Hmm, you might want to think twice about going there. <%= @country.name %> isn't doing so well, as you can tell by its Human Development Index of <%= @country.hdi.hdi_value_2012 %>.
+  <p><%= @country.name %> isn't doing so well, as you can tell by its Human Development Index of <%= @country.hdi.hdi_value_2012 %>.
   </p>
 <% else %>
-  <p>Yikes, are you sure about that? <%= @country.name %> has a Human Development Index of <%= @country.hdi.hdi_value_2012 %>, maybe not the kind of place you want to be going...
+  <p><%= @country.name %> has a Human Development Index of <%= @country.hdi.hdi_value_2012 %>, maybe not the kind of place you want to be going...
   </p>
 <% end %>
 

@@ -12,16 +12,16 @@ class CountriesController < ApplicationController
   end
 
   def show
-    @country = Country.last
+    @country = Country.find(params[:id])
   end
 
   def create
-    @country = Country.find_or_create_by(country_params)
+    @country = Country.new(country_params)
     if @country.find_hdi_value_2012
       @hdi_value = @country.find_hdi_value_2012
       @country.hdi = Hdi.new(:hdi_value_2012 => @hdi_value)
       if @country.save
-        redirect_to countries_show_path
+        redirect_to countries_show_path(@country)
       else
         render :new
       end
@@ -31,7 +31,18 @@ class CountriesController < ApplicationController
   end
 
   def update
-    create
+    @country = Country.find(params[:id])
+    if @country.find_hdi_value_2012
+      @hdi_value = @country.find_hdi_value_2012
+      @country.hdi = Hdi.new(:hdi_value_2012 => @hdi_value)
+      if @country.save
+        redirect_to countries_show_path(@country)
+      else
+        render :new
+      end
+    else
+      render :new
+    end
   end
 
   private
