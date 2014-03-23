@@ -4,7 +4,8 @@ VisitWhere::Application.routes.draw do
   get '/countries' => 'countries#index'
   get '/countries/new' => 'countries#new'
   get '/countries/show' => 'countries#show'
-  post '/countries' => 'countries#create'
+  post '/countries' => 'countries#create', :as => 'country'
+  patch '/countries' => 'countries#update'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,12 +1,13 @@
 # Need to mess with this or the controller:
 #   If statements or rescue based on bad searches
 #   Suggest correct term if misspelled
-#   How to search for countries with multiple names (united states)
+#   How to search for countries with multiple names (united states) - check
 
 class Country < ActiveRecord::Base
   # before_create :check_spelling
   before_create :titleize_name!
   has_one :hdi, dependent: :destroy
+  validates_presence_of :hdi
 
   def fix_name_for_search
     search = self.name.clone
@@ -32,11 +33,11 @@ class Country < ActiveRecord::Base
     request = Net::HTTP::Get.new(uri.request_uri) 
     response = http.request(request)
     hash_data = JSON.parse(response.body)
-    # if hash_data == []
-    #   raise "no data for this search"
-    # else
-      hash_data.first["_2012_hdi_value"] if hash_data.first["_2012_hdi_value"]
-    # end
+    if hash_data.first
+      hash_data.first["_2012_hdi_value"] 
+    else
+      false
+    end
   end
 
   def great_to_visit?
