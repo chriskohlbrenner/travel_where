@@ -2,17 +2,49 @@
 <div>
 
 <% if @country.great_to_visit? %>
-  <p>All seems well in <%=  @country.name %>, with a Human Development Index of <%= @country.hdi.hdi_value_2012 %>.
+  <p>All seems well in <%=  @country.name %>, with a Human Development Index of <%= @country.hdi.hdi_value %>.
   </p>
 <% elsif @country.ok_to_visit? %>
-  <p><%= @country.name %> isn't doing so well, as you can tell by its Human Development Index of <%= @country.hdi.hdi_value_2012 %>.
+  <p><%= @country.name %> isn't doing so well, as you can tell by its Human Development Index of <%= @country.hdi.hdi_value %>.
   </p>
 <% else %>
-  <p><%= @country.name %> has a Human Development Index of <%= @country.hdi.hdi_value_2012 %>, maybe not the kind of place you want to be going...
+  <p><%= @country.name %> has a Human Development Index of <%= @country.hdi.hdi_value %>, maybe not the kind of place you want to be going...
   </p>
 <% end %>
+  <h4>A few stats about <%= @country.name %>:</h4>
+  <table style="width:50%">
+  <tr>
+    <th>Category</th>
+    <th>Value</th> 
+  </tr>  
+  <tr>
+    <td>HDI</td>
+    <td><%= @country.hdi.hdi_value %></td>
+  </tr>
+  <tr>
+    <td>HDI Rank</td>
+    <td><%= @country.hdi.hdi_rank %></td> 
+  </tr>
+  <tr>
+    <td>Life Expectancy</td>
+    <td><%= @country.hdi.life_expectancy_at_birth %></td>
+  </tr>
+  <tr>
+    <td>Gross National Income per Capita</td>
+    <td><%= @country.hdi.gross_national_income_gni_per_capita %></td>
+  </tr>
+  <tr>
+    <td>Expected Years of Schooling</td>
+    <td><%= @country.hdi.expected_years_of_schooling %></td> 
+  </tr>
+  <tr>
+    <td>Mean Years of Schooling</td>
+    <td><%= @country.hdi.mean_years_of_schooling %></td> 
+  </tr>
+  </table>
 
 </div>
 
 
 <p><%= link_to "Try another country", "/countries/new", class: 'button' %><p>
+<p><%= link_to "See previous searches", "/countries", class: 'button' %><p>

@@ -26,7 +26,7 @@ class Country < ActiveRecord::Base
 
   end
 
-  def find_hdi_value_2012
+  def find_values
     search = fix_name_for_search
     uri = URI.parse("http://data.undp.org/resource/wxub-qc5k.json?name=#{search}")
     http = Net::HTTP.new(uri.host, uri.port)
@@ -34,22 +34,33 @@ class Country < ActiveRecord::Base
     response = http.request(request)
     hash_data = JSON.parse(response.body)
     if hash_data.first
-      hash_data.first["_2012_hdi_value"]
+      hash_data.first
     else
       false
     end
   end
 
+  def find_all_values
+    {
+      :hdi_value => find_values["_2012_hdi_value"],
+      :expected_years_of_schooling => find_values["_2011_expected_years_of_schooling"],
+      :mean_years_of_schooling => find_values["_2010_mean_years_of_schooling"],
+      :hdi_rank => find_values["_2012_hdi_rank"],
+      :life_expectancy_at_birth => find_values["_2012_life_expectancy_at_birth"],
+      :gross_national_income_gni_per_capita => find_values["_2012_gross_national_income_gni_per_capita"]
+    }
+  end
+
   def great_to_visit?
-    self.hdi.hdi_value_2012.to_f >= 0.700
+    self.hdi.hdi_value.to_f >= 0.700
   end
 
   def ok_to_visit?
-    0.700 > self.hdi.hdi_value_2012.to_f && self.hdi.hdi_value_2012.to_f >= 0.500
+    0.700 > self.hdi.hdi_value.to_f && self.hdi.hdi_value.to_f >= 0.500
   end
 
   def bad_to_visit?
-    0.500 > self.hdi.hdi_value_2012.to_f
+    0.500 > self.hdi.hdi_value.to_f
   end
 
   private

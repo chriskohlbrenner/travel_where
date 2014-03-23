@@ -3,7 +3,6 @@
   <% @countries.each do |country| %>
     <li>
       <%= link_to country.name, countries_show_path(country) %>
-      <%= country.hdi.hdi_value_2012 %>
     </li>
   <% end %>
   </ul>

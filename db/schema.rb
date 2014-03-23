@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321151811) do
+ActiveRecord::Schema.define(version: 20140323211310) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -20,10 +20,15 @@ ActiveRecord::Schema.define(version: 20140321151811) do
   end
 
   create_table "hdis", force: true do |t|
-    t.string   "hdi_value_2012"
+    t.string   "hdi_value"
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "expected_years_of_schooling"
+    t.string   "mean_years_of_schooling"
+    t.string   "hdi_rank"
+    t.string   "gross_national_income_gni_per_capita"
+    t.string   "life_expectancy_at_birth"
   end
 
 end
