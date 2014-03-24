@@ -22,6 +22,8 @@ class Country < ActiveRecord::Base
     search.gsub!(/(moldova)/i,"Moldova (Republic of)")
     search.gsub!(/(tanzania)/i,"Tanzania (United Republic of)")
     search.gsub!(/(congo)/i,"Congo (Democratic Republic of the)")
+    search.gsub!(/(russia)/i,"Russian Federation")
+    search.gsub!(/(yugoslavia)/i,"The former Yugoslav Republic of Macedonia")
     search.gsub(" ", "%20").gsub("'", "%27").gsub("(", "%28").gsub(")", "%29")
 
   end
@@ -41,14 +43,18 @@ class Country < ActiveRecord::Base
   end
 
   def find_all_values
-    {
-      :hdi_value => find_values["_2012_hdi_value"],
-      :expected_years_of_schooling => find_values["_2011_expected_years_of_schooling"],
-      :mean_years_of_schooling => find_values["_2010_mean_years_of_schooling"],
-      :hdi_rank => find_values["_2012_hdi_rank"],
-      :life_expectancy_at_birth => find_values["_2012_life_expectancy_at_birth"],
-      :gross_national_income_gni_per_capita => find_values["_2012_gross_national_income_gni_per_capita"]
-    }
+    if find_values
+      {
+        :hdi_value => find_values["_2012_hdi_value"],
+        :expected_years_of_schooling => find_values["_2011_expected_years_of_schooling"],
+        :mean_years_of_schooling => find_values["_2010_mean_years_of_schooling"],
+        :hdi_rank => find_values["_2012_hdi_rank"],
+        :life_expectancy_at_birth => find_values["_2012_life_expectancy_at_birth"],
+        :gross_national_income_gni_per_capita => find_values["_2012_gross_national_income_gni_per_capita"]
+      }
+    else
+      false
+    end
   end
 
   def great_to_visit?

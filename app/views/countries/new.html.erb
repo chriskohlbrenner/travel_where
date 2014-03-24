@@ -2,6 +2,15 @@
   <h3>Where are you considering traveling?</h3>
 </div>
 
+
+<% if flash[:error] %>
+<div data-alert class="alert-box alert radius">
+  Your search failed to save--did you spell it correctly?
+  <a href="#" class="close">&times;</a>
+</div>
+<% end %>
+
+
 <%= form_for(@country) do |f| %>
   <p>
     <%= f.label "Country Name" %>
@@ -10,3 +19,4 @@
   
   <%= f.submit 'Search Country', class: 'button' %>
 <% end %>
+

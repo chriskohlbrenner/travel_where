@@ -23,9 +23,11 @@ class CountriesController < ApplicationController
       if @country.save
         redirect_to countries_show_path(@country)
       else
+        flash.now[:error] = "Spelling error"
         render :new
       end
     else
+      flash.now[:error] = "Spelling error"
       render :new
     end
   end
@@ -37,9 +39,11 @@ class CountriesController < ApplicationController
       if @country.save
         redirect_to countries_show_path(@country)
       else
+        flash.now[:error] = "Spelling error"
         render :new
       end
     else
+      flash.now[:error] = "Spelling error"
       render :new
     end
   end
